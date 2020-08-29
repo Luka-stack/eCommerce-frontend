@@ -11,10 +11,19 @@ import { map } from 'rxjs/operators';
 })
 export class ProductService {
   
-  private productUrl = 'http://192.168.1.105:8081/api/products';
-  private categoryUrl = 'http://192.168.1.105:8081/api/product-category';
+  private productUrl = 'http://192.168.1.101:8081/api/products';
+  private categoryUrl = 'http://192.168.1.101:8081/api/product-category';
 
   constructor(private httpClient: HttpClient) { }
+
+  getProductListPaginate(page: number, pageSize: number, 
+                         categoryId: number): Observable<GetResponseProduct> {
+                           
+    const searchUrl = `${this.productUrl}/search/findByCategoryId?id=${categoryId}` +
+                      `&page=${page}&size=${pageSize}`;
+
+    return this.httpClient.get<GetResponseProduct>(searchUrl);
+  }
 
   getProductList(categoryId: number): Observable<Product[]> {
     const searchUrl = `${this.productUrl}/search/findByCategoryId?id=${categoryId}`;
@@ -26,6 +35,15 @@ export class ProductService {
     const searchUrl = `${this.productUrl}/search/findByNameContaining?name=${theKeyword}`;
 
     return this.getProducts(searchUrl);
+  }
+
+  searchProductsPaginate(page: number, pageSize: number, 
+                         theKeyword: string): Observable<GetResponseProduct> {
+
+    const searchUrl = `${this.productUrl}/search/findByNameContaining?name=${theKeyword}` +
+                      `&page=${page}&size=${pageSize}`;
+
+    return this.httpClient.get<GetResponseProduct>(searchUrl);
   }
 
   getProduct(theProductId: number): Observable<Product> {
@@ -50,6 +68,12 @@ export class ProductService {
 interface GetResponseProduct {
   _embedded: {
     products: Product[];
+  },
+  page: {
+    size: number,
+    totalElements: number,
+    totalPages: number,
+    pageNumber: number;
   }
 }
 

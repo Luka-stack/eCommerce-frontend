@@ -1,3 +1,5 @@
+import { CartService } from './../../services/cart.service';
+import { CartItem } from './../../common/cart-item';
 import { Product } from './../../common/product';
 import { ProductService } from './../../services/product.service';
 import { Component, OnInit } from '@angular/core';
@@ -12,10 +14,18 @@ export class ProductListComponent implements OnInit {
 
   products: Product[];
   currentCategoryId: number;
+  previousCategoryId: number;
   currentCategoryName: string;
   searchMode: boolean;
 
+  pageNumber: number = 1;
+  pageSize: number = 10;
+  totalElements: number;
+
+  previousKeyword: string = null;
+
   constructor(private productService: ProductService,
+              private cartService: CartService,
               private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -38,8 +48,15 @@ export class ProductListComponent implements OnInit {
   handleSearchProducts() {
     const theKeyword: string = this.route.snapshot.paramMap.get('keyword');
 
-    this.productService.searchProducts(theKeyword).subscribe(
-      data => this.products = data
+    if (theKeyword != this.previousKeyword) {
+      this.pageNumber = 1;
+    }
+
+    this.previousKeyword = theKeyword;
+
+    this.productService.searchProductsPaginate(this.pageNumber-1, this.pageSize, 
+                                               theKeyword).subscribe(
+      this.processResult
     );
   }
 
@@ -55,9 +72,35 @@ export class ProductListComponent implements OnInit {
       this.currentCategoryName = 'Books';
     }
 
-    this.productService.getProductList(this.currentCategoryId).subscribe(
-      data => this.products = data
+    if (this.previousCategoryId != this.currentCategoryId) {
+      this.pageNumber = 1;
+    }
+
+    this.previousCategoryId = this.currentCategoryId;
+
+    this.productService.getProductListPaginate(this.pageNumber-1, this.pageSize, 
+                                               this.currentCategoryId).subscribe(
+      this.processResult()
     );
   }
 
+  processResult() {
+    return data => {
+      this.products = data._embedded.products;
+      this.pageNumber = data.page.number + 1;
+      this.pageSize = data.page.size;
+      this.totalElements = data.page.totalElements;
+    };
+  }
+
+  updatePageSize(pageSize: number) {
+    this.pageSize = pageSize;
+    this.pageNumber = 1;
+    this.listProducts()
+  }
+
+  addToCart(product: Product) {
+    const cartItem = new CartItem(product);
+    this.cartService.addToCart(cartItem);
+  }
 }
