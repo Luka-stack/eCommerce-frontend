@@ -514,7 +514,7 @@ input.au-input.au-input-xl{
     background:#fff
 }
 .main-content.page-m{
-    padding:10% 15%!important
+    padding: 10% 30% 10% 5%;
 }
 
 /* 
@@ -569,7 +569,7 @@ input.au-input.au-input-xl{
     background:#e5e5e5;
     position:relative;
     margin-bottom:45px;
-    padding:50px 20px;
+    padding: 30px 0px 10px 20px;
     border:3px solid #ccc
 }
 .form-area h3{
@@ -582,30 +582,30 @@ input.au-input.au-input-xl{
     z-index:23;
     display:inline-block
 }
-.input-space{
-    margin-bottom:20px
-}
-.input-space label{
-    padding-left:31px;
-    font-size:14px;
-    margin-bottom:50px
-}
-.input-space input[type=text]{
-    width:100%;
+
+.input-space {
+    width:90%;
     height:40px;
     border-radius:30px;
     outline:0;
     padding:10px;
     border:1px solid #ccc
 }
-.input-space select{
-    width:100%;
+.select-space {
+    width:90%;
     height:40px;
     border-radius:30px;
     outline:0;
     padding:0 10px;
     border:1px solid #ccc
 }
+
+.checkbox-space label{
+    padding-left:31px;
+    font-size:14px;
+    margin-bottom:50px
+}
+
 .au-checkbox{
     display:block;
     position:relative;
@@ -616,9 +616,10 @@ input.au-input.au-input-xl{
     -ms-user-select:none;
     user-select:none
 }
+
 .au-checkbox input{
-    position:absolute;
     opacity:0;
+    position:absolute;
     cursor:pointer
 }
 .au-checkmark{
