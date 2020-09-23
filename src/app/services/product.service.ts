@@ -11,8 +11,8 @@ import { map } from 'rxjs/operators';
 })
 export class ProductService {
   
-  private productUrl = 'http://192.168.1.101:8081/api/products';
-  private categoryUrl = 'http://192.168.1.101:8081/api/product-category';
+  private productUrl = 'http://192.168.1.104:8081/api/products';
+  private categoryUrl = 'http://192.168.1.104:8081/api/product-category';
 
   constructor(private httpClient: HttpClient) { }
 

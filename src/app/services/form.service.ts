@@ -10,8 +10,8 @@ import { map } from 'rxjs/operators';
 })
 export class FormService {
 
-  private countriesUrl = 'http://192.168.1.101:8081/api/countries';
-  private statesUrl = 'http://192.168.1.101:8081/api/states';
+  private countriesUrl = 'http://192.168.1.104:8081/api/countries';
+  private statesUrl = 'http://192.168.1.104:8081/api/states';
 
   constructor(private httpClient: HttpClient) { }
 

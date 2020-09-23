@@ -14,7 +14,7 @@
 
                         <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
                                 class="alert alert-danger col-md-11">
-                            <div *ngIf="firstName.errors.required">
+                            <div *ngIf="firstName.errors.required || firstName.errors.notOnlyWhitespace">
                                 First Name is required
                             </div>
                             <div *ngIf="firstName.errors.minlength">
@@ -30,7 +30,7 @@
 
                         <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
                                 class="alert alert-danger col-md-11">
-                            <div *ngIf="lastName.errors.required">
+                            <div *ngIf="lastName.errors.required || lastName.errors.notOnlyWhitespace">
                                 Last Name is required
                             </div>
                             <div *ngIf="lastName.errors.minlength">
@@ -72,7 +72,7 @@
 
                         <div *ngIf="shipCountry.invalid && (shipCountry.dirty || shipCountry.touched)"
                                 class="alert alert-danger col-md-11">
-                            <div *ngIf="shipCountry.errors.required">
+                            <div *ngIf="shipCountry.errors.required || shipCountry.errors.notOnlyWhitespace">
                                 Country is required
                             </div>
                         </div>
@@ -85,7 +85,7 @@
 
                         <div *ngIf="shipStreet.invalid && (shipStreet.dirty || shipStreet.touched)"
                                 class="alert alert-danger col-md-11">
-                            <div *ngIf="shipStreet.errors.required">
+                            <div *ngIf="shipStreet.errors.required || shipStreet.errors.notOnlyWhitespace">
                                 Street is required
                             </div>
                             <div *ngIf="shipStreet.errors.minlength">
@@ -101,7 +101,7 @@
 
                         <div *ngIf="shipCity.invalid && (shipCity.dirty || shipCity.touched)"
                                 class="alert alert-danger col-md-11">
-                            <div *ngIf="shipCity.errors.required">
+                            <div *ngIf="shipCity.errors.required || shipCity.errors.notOnlyWhitespace">
                                 City is required
                             </div>
                             <div *ngIf="shipCity.errors.minlength">
@@ -121,7 +121,7 @@
 
                         <div *ngIf="shipState.invalid && (shipState.dirty || shipState.touched)"
                                 class="alert alert-danger col-md-11">
-                            <div *ngIf="shipState.errors.required">
+                            <div *ngIf="shipState.errors.required || shipState.errors.notOnlyWhitespace">
                                 State is required
                             </div>
                         </div>
@@ -134,7 +134,7 @@
 
                         <div *ngIf="shipZipCode.invalid && (shipZipCode.dirty || shipZipCode.touched)"
                                 class="alert alert-danger col-md-11">
-                            <div *ngIf="shipZipCode.errors.required">
+                            <div *ngIf="shipZipCode.errors.required || shipZipCode.errors.notOnlyWhitespace">
                                 Zip Code is required
                             </div>
                             <div *ngIf="shipZipCode.errors.minlength">
@@ -168,7 +168,7 @@
 
                         <div *ngIf="billCountry.invalid && (billCountry.dirty || billCountry.touched)"
                                 class="alert alert-danger col-md-11">
-                            <div *ngIf="billCountry.errors.required">
+                            <div *ngIf="billCountry.errors.required || billCountry.errors.notOnlyWhitespace">
                                 Country is required
                             </div>
                         </div>
@@ -181,7 +181,7 @@
 
                         <div *ngIf="billStreet.invalid && (billStreet.dirty || billStreet.touched)"
                                 class="alert alert-danger col-md-11">
-                            <div *ngIf="billStreet.errors.required">
+                            <div *ngIf="billStreet.errors.required || billStreet.errors.notOnlyWhitespace">
                                 Street is required
                             </div>
                             <div *ngIf="billStreet.errors.minlength">
@@ -197,7 +197,7 @@
 
                         <div *ngIf="billCity.invalid && (billCity.dirty || billCity.touched)"
                                 class="alert alert-danger col-md-11">
-                            <div *ngIf="billCity.errors.required">
+                            <div *ngIf="billCity.errors.required || billCity.errors.notOnlyWhitespace">
                                 City is required
                             </div>
                             <div *ngIf="billCity.errors.minlength">
@@ -217,7 +217,7 @@
 
                         <div *ngIf="billState.invalid && (billState.dirty || billState.touched)"
                                 class="alert alert-danger col-md-11">
-                            <div *ngIf="billState.errors.required">
+                            <div *ngIf="billState.errors.required || billState.errors.notOnlyWhitespace">
                                 State is required
                             </div>
                         </div>
@@ -230,7 +230,7 @@
 
                         <div *ngIf="billZipCode.invalid && (billZipCode.dirty || billZipCode.touched)"
                                 class="alert alert-danger col-md-11">
-                            <div *ngIf="billZipCode.errors.required">
+                            <div *ngIf="billZipCode.errors.required || billZipCode.errors.notOnlyWhitespace">
                                 Zip Code is required
                             </div>
                             <div *ngIf="billZipCode.errors.minlength">
@@ -268,7 +268,7 @@
 
                         <div *ngIf="nameOnCard.invalid && (nameOnCard.dirty || nameOnCard.touched)"
                                 class="alert alert-danger col-md-11">
-                            <div *ngIf="nameOnCard.errors.required">
+                            <div *ngIf="nameOnCard.errors.required || nameOnCard.errors.notOnlyWhitespace">
                                 Name On Card is required
                             </div>
                             <div *ngIf="nameOnCard.errors.minlength">

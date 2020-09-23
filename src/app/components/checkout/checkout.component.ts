@@ -1,3 +1,4 @@
+import { FormValidators } from './../../validators/form-validators';
 import { State } from './../../common/state';
 import { Country } from './../../common/country';
 import { FormService } from './../../services/form.service';
@@ -29,33 +30,69 @@ export class CheckoutComponent implements OnInit {
   ngOnInit(): void {
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
-        firstName: new FormControl('', [Validators.required, Validators.minLength(2)]),
-        lastName: new FormControl('', [Validators.required, Validators.minLength(2)]),
+        firstName: new FormControl('', [
+          Validators.required, Validators.minLength(2), FormValidators.notOnlyWhitespace
+        ]),
+        lastName: new FormControl('', [
+          Validators.required, Validators.minLength(2), FormValidators.notOnlyWhitespace
+        ]),
         email: new FormControl('', [Validators.required, Validators.pattern(
           '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'
         )])
       }),
       shippingAddress: this.formBuilder.group({
-        street: new FormControl('', [Validators.required, Validators.minLength(2)]),
-        city: new FormControl('', [Validators.required, Validators.minLength(2)]),
-        state: new FormControl('', [Validators.required]),
-        country: new FormControl('', [Validators.required]),
-        zipCode: new FormControl('', [Validators.required, Validators.minLength(3)])
+        street: new FormControl('', [
+          Validators.required, Validators.minLength(2), FormValidators.notOnlyWhitespace
+        ]),
+        city: new FormControl('', [
+          Validators.required, Validators.minLength(2), FormValidators.notOnlyWhitespace
+        ]),
+        state: new FormControl('', [
+          Validators.required, FormValidators.notOnlyWhitespace
+        ]),
+        country: new FormControl('', [
+          Validators.required, FormValidators.notOnlyWhitespace
+        ]),
+        zipCode: new FormControl('', [
+          Validators.required, Validators.minLength(3), FormValidators.notOnlyWhitespace
+        ])
       }),
       billingAddress: this.formBuilder.group({
-        street: new FormControl('', [Validators.required, Validators.minLength(2)]),
-        city: new FormControl('', [Validators.required, Validators.minLength(2)]),
-        state: new FormControl('', [Validators.required]),
-        country: new FormControl('', [Validators.required]),
-        zipCode: new FormControl('', [Validators.required])
+        street: new FormControl('', [
+          Validators.required, Validators.minLength(2), FormValidators.notOnlyWhitespace
+        ]),
+        city: new FormControl('', [
+          Validators.required, Validators.minLength(2), FormValidators.notOnlyWhitespace
+        ]),
+        state: new FormControl('', [
+          Validators.required, FormValidators.notOnlyWhitespace
+        ]),
+        country: new FormControl('', [
+          Validators.required, FormValidators.notOnlyWhitespace
+        ]),
+        zipCode: new FormControl('', [
+          Validators.required, FormValidators.notOnlyWhitespace
+        ])
       }),
       creditCard: this.formBuilder.group({
-        cardType: new FormControl('', [Validators.required]),
-        nameOnCard: new FormControl('', [Validators.required, Validators.minLength(2)]),
-        cardNumber: new FormControl('', [Validators.required, Validators.pattern('[0-9]{13,19}')]),
-        securityCode: new FormControl('', [Validators.required, Validators.pattern('[0-9]{3}')]),
-        expirationMonth: new FormControl('', [Validators.required]),
-        expirationYear: new FormControl('', [Validators.required])
+        cardType: new FormControl('', [
+          Validators.required, FormValidators.notOnlyWhitespace
+        ]),
+        nameOnCard: new FormControl('', [
+          Validators.required, Validators.minLength(2), FormValidators.notOnlyWhitespace
+        ]),
+        cardNumber: new FormControl('', [
+          Validators.required, Validators.pattern('[0-9]{13,19}')
+        ]),
+        securityCode: new FormControl('', [
+          Validators.required, Validators.pattern('[0-9]{3}')
+        ]),
+        expirationMonth: new FormControl('', [
+          Validators.required
+        ]),
+        expirationYear: new FormControl('', [
+          Validators.required
+        ])
       }),
     });
 
